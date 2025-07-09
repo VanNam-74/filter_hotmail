@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Quản lý Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='src/assets/main.css') }}" />
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="left">
+                <img src="{{ url_for('static', path='publish/logout.png') }}" alt="Logout" onclick="logoutEvent()" />
+                <div class="divider"></div>
+                <img src="{{ url_for('static', path='publish/setting.png') }}" alt="Setting" onclick="settingEvent()" />
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <!-- Search Section -->
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Profile ID</label>
+                                    <textarea id="searchProfileId" rows="2" class="form-control"></textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Profile Name</label>
+                                    <textarea id="searchProfileName" rows="2" class="form-control"></textarea>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Status</label>
+                                    <select id="selectProfile" class="form-select">
+                                        <option value="" selected>-------------------</option>
+                                        <option value="Locked">Locked</option>
+                                        <option value="Terminated">Terminated</option>
+                                        <option value="Closed">Closed</option>
+                                    </select>
+                                    <img src="" alt="">
+                                </div>
+
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <button id="btnSearch" class="btn btn-primary me-2">
+                                        Filter
+                                    </button>
+                                    <button id="btnClear" class="btn btn-secondary me-2">
+                                        Clear
+                                    </button>
+                                    <button id="btnRefresh" class="btn btn-success me-2">
+                                        Refresh
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-bar">
+                <div class="d-flex">
+                    <div class="ms-auto d-flex">
+                        <strong class="d-flex">
+                            <p>Total:&nbsp;</p>
+                            <p class="summary-bar-total">200,000</p>
+                        </strong>
+                        <p>&nbsp;|&nbsp;</p>
+                        <strong class="d-flex">
+                            <p style="color: red;">Terminated:&nbsp;</p>
+                            <p class="summary-bar-terminated">48,000</p>
+                        </strong>
+                        <p>&nbsp;|&nbsp;</p>
+                        <strong class="d-flex">
+                            <p style="color: gray;">Closed:&nbsp;</p>
+                            <p class="summary-bar-closed">48,000</p>
+                        </strong>
+                        <p>&nbsp;|&nbsp;</p>
+                        <strong class="d-flex">
+                            <p style="color: green;">Active:&nbsp;</p>
+                            <p class="summary-bar-active">48,000</p>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <!-- Data Table -->
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Profile ID</th>
+                                    <th>Profile Name</th>
+                                    <th>Password</th>
+                                    <th>Browser ID</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-table">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="loading" style="display: none;">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="pagination-container">
+            <div id="paginate_page">
+                <ul>
+                    <li class="previous">
+                        <a href="#" class="big-arrow">&laquo;</a>
+                    </li>
+                    <li id="paginate_page_item">
+                        <button disabled>0</button>
+                    </li>
+                    <li class="next">
+                        <a href="#" class="big-arrow">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="{{ url_for('static', path='src/js/main.js') }}"></script>
+</body>
+
+</html>
